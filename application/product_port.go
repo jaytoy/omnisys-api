@@ -2,7 +2,7 @@ package application
 
 import "omnisys.io/core/domain"
 
-type ProductRepository interface {
+type ProductPort interface {
 	Create(domain.Product) (int64, error)
 	ViewAll() (domain.Products, error)
 	ViewByID(int) (domain.Product, error)
