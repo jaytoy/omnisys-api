@@ -3,29 +3,29 @@ package application
 import "omnisys.io/core/domain"
 
 type CustomerInteractor struct {
-	customerRepository CustomerRepository
+	customerPort CustomerPort
 }
 
-// func CreatePersonUsecase(customerRepository CustomerRepository) person.PersonUsecase {
-// 	return &CustomerInteractor{customerRepository}
+// func CreateCustomerApp(customerPort CustomerRepository) CustomerRepository {
+// 	return &CustomerInteractor{customerPort}
 // }
 
 func (e *CustomerInteractor) Create(person *domain.Customer) (*domain.Customer, error) {
-	return e.customerRepository.Create(person)
+	return e.customerPort.Create(person)
 }
 
 func (e *CustomerInteractor) ReadAll() (*[]domain.Customer, error) {
-	return e.customerRepository.ViewAll()
+	return e.customerPort.ViewAll()
 }
 
 func (e *CustomerInteractor) ReadById(id int) (*domain.Customer, error) {
-	return e.customerRepository.ViewById(id)
+	return e.customerPort.ViewById(id)
 }
 
 func (e *CustomerInteractor) Update(id int, person *domain.Customer) (*domain.Customer, error) {
-	return e.customerRepository.Edit(id, person)
+	return e.customerPort.Edit(id, person)
 }
 
 func (e *CustomerInteractor) Delete(id int) error {
-	return e.customerRepository.Delete(id)
+	return e.customerPort.Delete(id)
 }
