@@ -6,36 +6,26 @@ type ProductInteractor struct {
 	productApp ProductApp
 }
 
-// Index is display a listing of the resource.
-func (pi *ProductInteractor) Index() (products domain.Products, err error) {
-	products, err = pi.productApp.ViewAll()
-
-	return
+func CreateProductApp(productApp ProductApp) ProductApp {
+	return &ProductInteractor{productApp}
 }
 
-func (pi *ProductInteractor) Show(productID int) (p domain.Product, err error) {
-	p, err = pi.productApp.ViewByID(productID)
-
-	return
+func (pi *ProductInteractor) Create(product *domain.Product) (*domain.Product, error) {
+	return pi.productApp.Create(product)
 }
 
-// Store is store a newly created resource in storage.
-func (pi *ProductInteractor) Store(p domain.Product) (id int64, err error) {
-	id, err = pi.productApp.Create(p)
-
-	return
+func (pi *ProductInteractor) ViewAll() (*[]domain.Product, error) {
+	return pi.productApp.ViewAll()
 }
 
-// Destroy is update the specified resource from storage.
-func (pi *ProductInteractor) Update(productID int) (err error) {
-	err = pi.productApp.EditByID(productID)
-
-	return
+func (pi *ProductInteractor) ViewById(id int) (*domain.Product, error) {
+	return pi.productApp.ViewById(id)
 }
 
-// Destroy is remove the specified resource from storage.
-func (pi *ProductInteractor) Destroy(productID int) (err error) {
-	err = pi.productApp.DeleteByID(productID)
+func (pi *ProductInteractor) Edit(id int, product *domain.Product) (*domain.Product, error) {
+	return pi.productApp.Edit(id, product)
+}
 
-	return
+func (pi *ProductInteractor) Delete(id int) error {
+	return pi.productApp.Delete(id)
 }
