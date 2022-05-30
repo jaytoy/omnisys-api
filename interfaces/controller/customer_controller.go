@@ -1,4 +1,4 @@
-package controllers
+package controller
 
 import (
 	"net/http"
@@ -10,11 +10,11 @@ import (
 )
 
 type CustomerController struct {
-	customerPort application.CustomerPort
+	customerApp application.CustomerApp
 }
 
-func CreateCustomerController(r *gin.Engine, customerPort application.CustomerPort) {
-	customerController := CustomerController{customerPort}
+func CreateCustomerController(r *gin.Engine, customerApp application.CustomerApp) {
+	customerController := CustomerController{customerApp}
 
 	r.POST("/customer", customerController.addCustomer)
 	r.GET("/customer", customerController.viewCustomers)
@@ -39,7 +39,7 @@ func (e *CustomerController) addCustomer(c *gin.Context) {
 		HandleError(c, http.StatusBadRequest, "column cannot be empty")
 		return
 	}
-	newPerson, err := e.customerPort.Create(&customer)
+	newPerson, err := e.customerApp.Create(&customer)
 	if err != nil {
 		HandleError(c, http.StatusInternalServerError, err.Error())
 		return
@@ -48,7 +48,7 @@ func (e *CustomerController) addCustomer(c *gin.Context) {
 }
 
 func (e *CustomerController) viewCustomers(c *gin.Context) {
-	persons, err := e.customerPort.ViewAll()
+	persons, err := e.customerApp.ViewAll()
 	if err != nil {
 		HandleError(c, http.StatusInternalServerError, err.Error())
 		return
@@ -67,7 +67,7 @@ func (e *CustomerController) viewCustomerById(c *gin.Context) {
 		HandleError(c, http.StatusBadRequest, "id has be number")
 		return
 	}
-	customer, err := e.customerPort.ViewById(id)
+	customer, err := e.customerApp.ViewById(id)
 	if err != nil {
 		HandleError(c, http.StatusNotFound, err.Error())
 		return
@@ -82,7 +82,7 @@ func (e *CustomerController) editCustomer(c *gin.Context) {
 		HandleError(c, http.StatusBadRequest, "id has be number")
 		return
 	}
-	_, err = e.customerPort.ViewById(id)
+	_, err = e.customerApp.ViewById(id)
 	if err != nil {
 		HandleError(c, http.StatusNotFound, err.Error())
 		return
@@ -101,7 +101,7 @@ func (e *CustomerController) editCustomer(c *gin.Context) {
 		HandleError(c, http.StatusBadRequest, "column cannot be empty")
 		return
 	}
-	customer, err := e.customerPort.Edit(id, &tempPerson)
+	customer, err := e.customerApp.Edit(id, &tempPerson)
 	if err != nil {
 		HandleError(c, http.StatusInternalServerError, err.Error())
 		return
@@ -116,7 +116,7 @@ func (e *CustomerController) deleteCustomer(c *gin.Context) {
 		HandleError(c, http.StatusBadRequest, "id has be number")
 		return
 	}
-	err = e.customerPort.Delete(id)
+	err = e.customerApp.Delete(id)
 	if err != nil {
 		HandleError(c, http.StatusNotFound, err.Error())
 		return
