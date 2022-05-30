@@ -12,7 +12,7 @@ func ConnectDB() *gorm.DB {
 		panic("failed to connect database")
 	}
 
-	db.AutoMigrate(domain.Product{})
+	db.AutoMigrate(domain.Product{}, domain.Customer{})
 
 	return db
 }
