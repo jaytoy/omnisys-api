@@ -26,13 +26,13 @@ func (e *CustomerRepository) Create(customer *domain.Customer) (*domain.Customer
 }
 
 func (e *CustomerRepository) ViewAll() (*[]domain.Customer, error) {
-	var persons []domain.Customer
-	err := e.DB.Find(&persons).Error
+	var customers []domain.Customer
+	err := e.DB.Find(&customers).Error
 	if err != nil {
 		fmt.Printf("[CustomerRepository.ReadAll] error execute query %v \n", err)
 		return nil, fmt.Errorf("failed view all data")
 	}
-	return &persons, nil
+	return &customers, nil
 }
 
 func (e *CustomerRepository) ViewById(id int) (*domain.Customer, error) {
