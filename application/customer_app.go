@@ -2,7 +2,7 @@ package application
 
 import "omnisys.io/core/domain"
 
-type CustomerPort interface {
+type CustomerApp interface {
 	Create(customer *domain.Customer) (*domain.Customer, error)
 	ViewAll() (*[]domain.Customer, error)
 	ViewById(id int) (*domain.Customer, error)

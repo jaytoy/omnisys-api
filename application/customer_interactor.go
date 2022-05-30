@@ -3,29 +3,29 @@ package application
 import "omnisys.io/core/domain"
 
 type CustomerInteractor struct {
-	customerPort CustomerPort
+	customerApp CustomerApp
 }
 
-// func CreateCustomerApp(customerPort CustomerRepository) CustomerRepository {
-// 	return &CustomerInteractor{customerPort}
-// }
-
-func (e *CustomerInteractor) Create(person *domain.Customer) (*domain.Customer, error) {
-	return e.customerPort.Create(person)
+func CreateCustomerApp(customerApp CustomerApp) CustomerApp {
+	return &CustomerInteractor{customerApp}
 }
 
-func (e *CustomerInteractor) ReadAll() (*[]domain.Customer, error) {
-	return e.customerPort.ViewAll()
+func (ci *CustomerInteractor) Create(person *domain.Customer) (*domain.Customer, error) {
+	return ci.customerApp.Create(person)
 }
 
-func (e *CustomerInteractor) ReadById(id int) (*domain.Customer, error) {
-	return e.customerPort.ViewById(id)
+func (ci *CustomerInteractor) ViewAll() (*[]domain.Customer, error) {
+	return ci.customerApp.ViewAll()
 }
 
-func (e *CustomerInteractor) Update(id int, person *domain.Customer) (*domain.Customer, error) {
-	return e.customerPort.Edit(id, person)
+func (ci *CustomerInteractor) ViewById(id int) (*domain.Customer, error) {
+	return ci.customerApp.ViewById(id)
 }
 
-func (e *CustomerInteractor) Delete(id int) error {
-	return e.customerPort.Delete(id)
+func (ci *CustomerInteractor) Edit(id int, person *domain.Customer) (*domain.Customer, error) {
+	return ci.customerApp.Edit(id, person)
+}
+
+func (ci *CustomerInteractor) Delete(id int) error {
+	return ci.customerApp.Delete(id)
 }
