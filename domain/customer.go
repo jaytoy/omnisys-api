@@ -10,6 +10,4 @@ type Customer struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-func (c *Customer) TableName() string {
-	return "customer"
-}
+func (Customer) TableName() string { return "customers" }

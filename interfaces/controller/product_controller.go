@@ -17,8 +17,8 @@ func CreateProductController(r *gin.Engine, productApp application.ProductApp) {
 	productController := ProductController{productApp}
 
 	r.POST("/product", productController.addProduct)
-	r.GET("/product", productController.viewProducts)
-	r.GET("product/:id", productController.viewProductById)
+	r.GET("/products", productController.viewProducts)
+	r.GET("/product/:id", productController.viewProductById)
 	r.PUT("/product/:id", productController.editProduct)
 	r.DELETE("/product/:id", productController.deleteProduct)
 }
@@ -57,7 +57,10 @@ func (e *ProductController) viewProducts(c *gin.Context) {
 		HandleError(c, http.StatusNotFound, "list product is empty")
 		return
 	}
-	HandleSucces(c, products)
+	c.Header("Access-Control-Allow-Origin", "*")
+
+	// HandleSucces(c, products)
+	c.IndentedJSON(http.StatusOK, products)
 }
 
 func (e *ProductController) viewProductById(c *gin.Context) {

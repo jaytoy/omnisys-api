@@ -1,0 +1,29 @@
+[
+    {
+        "order_items": [
+            {
+                "name": "Minecraft",
+                "quantity": 3,
+                "single_price": 49.99
+            }
+        ],
+        "status": "accepted",
+        "total_price": 149.97
+    },
+    {
+        "order_items": [
+            {
+                "name": "Minecraft",
+                "quantity": 1,
+                "single_price": 49.99
+            },
+            {
+                "name": "Grand Theft Auto 5",
+                "quantity": 2,
+                "single_price": 21.99
+            }
+        ],
+        "status": "accepted",
+        "total_price": 93.97
+    }
+] 

@@ -20,6 +20,16 @@ func main() {
 	customerApp := application.CreateCustomerApp(customerRepo)
 	controller.CreateCustomerController(router, customerApp)
 
+	// register product module
+	productRepo := repository.CreateProductRepository(db)
+	productApp := application.CreateProductApp(productRepo)
+	controller.CreateProductController(router, productApp)
+
+	// register order module
+	orderRepo := repository.CreateOrderRepository(db)
+	orderApp := application.CreateOrderApp(orderRepo)
+	controller.CreateOrderController(router, orderApp)
+
 	// start server
 	router.Run("localhost:8080")
 }
