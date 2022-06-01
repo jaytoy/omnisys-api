@@ -17,7 +17,7 @@ func CreateOrderRepository(DB *gorm.DB) application.OrderApp {
 }
 
 func (e *OrderRepository) Create(order *domain.Order) (*domain.Order, error) {
-	err := e.DB.Save(&order).Error
+	err := e.DB.Create(&order).Error
 	if err != nil {
 		fmt.Printf("[OrderRepository.Create] error execute query %v \n", err)
 		return nil, fmt.Errorf("failed insert data")

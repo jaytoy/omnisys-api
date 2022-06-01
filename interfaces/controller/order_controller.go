@@ -27,10 +27,6 @@ func (e *OrderController) addOrder(c *gin.Context) {
 		HandleError(c, http.StatusInternalServerError, "Oopss server someting wrong")
 		return
 	}
-	// if order.ID != 0 {
-	// 	HandleError(c, http.StatusBadRequest, "input not permitted")
-	// 	return
-	// }
 	if len(order.OrderItems) == 0 {
 		HandleError(c, http.StatusBadRequest, "empty order")
 		return
