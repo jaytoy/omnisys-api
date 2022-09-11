@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"omnisys.io/core/application"
 	"omnisys.io/core/infrastructure/database"
@@ -14,6 +15,7 @@ func main() {
 
 	// register the router
 	router := gin.Default()
+	router.Use(cors.Default()) // CORS gin's middleware
 
 	// register customer module
 	customerRepo := repository.CreateCustomerRepository(db)

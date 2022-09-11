@@ -57,7 +57,6 @@ func (e *ProductController) viewProducts(c *gin.Context) {
 		HandleError(c, http.StatusNotFound, "list product is empty")
 		return
 	}
-	c.Header("Access-Control-Allow-Origin", "*")
 
 	// HandleSucces(c, products)
 	c.IndentedJSON(http.StatusOK, products)

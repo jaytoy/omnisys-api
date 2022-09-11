@@ -22,6 +22,7 @@ func CreateOrderController(r *gin.Engine, orderApp application.OrderApp) {
 
 func (e *OrderController) addOrder(c *gin.Context) {
 	var order = domain.Order{}
+
 	err := c.Bind(&order)
 	if err != nil {
 		HandleError(c, http.StatusInternalServerError, "Oopss server someting wrong")
@@ -36,7 +37,10 @@ func (e *OrderController) addOrder(c *gin.Context) {
 		HandleError(c, http.StatusInternalServerError, err.Error())
 		return
 	}
-	HandleSucces(c, newOrder)
+
+	// HandleSucces(c, newOrder)
+	c.IndentedJSON(http.StatusCreated, newOrder)
+
 }
 
 func (e *OrderController) viewOrderById(c *gin.Context) {
