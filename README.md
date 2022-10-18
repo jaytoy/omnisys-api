@@ -8,8 +8,6 @@ This is a demo API that I built for my bachelor thesis “Omnichannel Architectu
 
 The e-commerce storefront and POS system are the frontend layer of the application. The former provides the user interface for customers to view the products and place an order, while the latter provides the user interface for the store manager or sales associates to process purchases and returns. The backend layer is an API to handle all the requests from the e-commerce website and POS system.
 
-![High-level-solution.drawio (1).png](README%20548e20714d2d449f91d7e276abf99f31/High-level-solution.drawio_(1).png)
-
 # What is Omnichannel Retailing?
 
 Omnichannel Retailing provides the greatest consumer experience by allowing customers, information, and inventory to move seamlessly between numerous channels throughout the purchasing process. The key point for Omnichannel Retailing is an integrated/seamless experience across all channels.
